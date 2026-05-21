@@ -29,11 +29,5 @@ public class Gestor {
 	}
 	
 	
-	/**
-	 * 1
-	 *  2
-	 *   3
-	 *  GitHub working test
-	 */
 	
 }
