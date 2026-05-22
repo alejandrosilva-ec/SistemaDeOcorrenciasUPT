@@ -9,7 +9,6 @@ package sistemaOcorrencias;
  * 
  * This class contains the methods, registarOcorrencia and normalizarPrioridade. 
  * @author Filipe Tolentino
- * 
  */
 
 import java.util.ArrayList;
