@@ -99,7 +99,7 @@ public class Gestor {
 	 *
 	 * @return a Ocorrencia criada
 	 */
-	private Ocorrencia newOcorrencia(String titulo, String descricao, String prioridade,
+	public Ocorrencia newOcorrencia(String titulo, String descricao, String prioridade,
 			String localizacao, String departamento) {
  
 		String codigo = gerarCodigo();
@@ -128,7 +128,7 @@ public class Gestor {
 	 *
 	 * @return a Complexa criada
 	 */
-	private Complexa newComplexa(String titulo, String descricao, String prioridade,
+	public Complexa newComplexa(String titulo, String descricao, String prioridade,
 			String localizacao, String departamento, String link, int tamanho) {
  
 		String codigo = gerarCodigo();
@@ -193,9 +193,6 @@ public class Gestor {
 		}
 	}
 	
-	
- 
-}
 	
 	public Ocorrencia procurarOcorrencia(String codigo) {
 		for(Ocorrencia i : ocorrencias) {

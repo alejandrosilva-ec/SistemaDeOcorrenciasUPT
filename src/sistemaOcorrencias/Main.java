@@ -14,12 +14,13 @@ public class Main {
 		System.out.println("         SISTEMA DE OCORRENCIAS       ");
 		System.out.println("======================================");
 		
+		
 	}
 	
 	static Scanner scanner = new Scanner(System.in);
 	static Gestor gestor = new Gestor();
 	
-	public static void menu() {
+	public static void menu(Gestor ocorrencias) {
 		
 		int opcao;
 		
@@ -36,31 +37,86 @@ public class Main {
 			
 			case 1:
 			
-				System.out.print("Código:");
-				String codigo = scanner.nextLine();
+				System.out.println("Escolha o local da sua ocorrencia:");
+				System.out.println("1-Sala");
+				System.out.println("2-Cantina");
+				System.out.println("3-Parque de estacionamento");
 				
-				System.out.print("Titulo:");
+				System.out.print("Opção:");
+				int opcaoLocal = scanner.nextInt();
+				scanner.nextLine();
+				
+				Local localizacao = null;
+				String localString;
+				
+				switch(opcaoLocal) {
+				
+				case 1:
+					
+					System.out.println("Número da sala:");
+					String numeroSala = scanner.nextLine();
+					
+					localizacao = new Local("Sala", numeroSala);
+					localString = localizacao.toString();
+					
+					break;
+					
+				case 2:
+					
+					localizacao = new Local("Cantina", "");
+					localString = localizacao.toString();
+					
+					break;
+					
+				case 3:
+					
+					localizacao = new Local("Parque de estacionamento","");
+					localString = localizacao.toString();
+					
+					break;
+					
+				default:
+					
+					System.out.println("Opção inválida.");
+					continue;
+				}
+				
+				System.out.print("\tTitulo:");
 				String titulo = scanner.nextLine();
 				
-				System.out.print("Descrição:");
+				System.out.print("\tDescrição:");
 				String descricao = scanner.nextLine();
 				
-				System.out.print("Prioridade:");
+				System.out.print("\tPrioridade:");
 				String prioridade = scanner.nextLine();
 				
-				System.out.print("Estado:");
-				String estado = scanner.nextLine();
 				
-				Ocorrencia o = new Ocorrencia(codigo, titulo, descricao, prioridade, estado);
+				System.out.print("\tDepartamento:");
+				String departamento = scanner.nextLine();
 				
-				gestor.resgistrarOcorrencia(o);
 				
-				System.out.print("Ocorrencia registrada");
-				break;
+				if(prioridade.equalsIgnoreCase("Baixa")) {
+				
+				    ocorrencias.newOcorrencia(titulo,descricao,prioridade,localString,departamento);
+				
+				    System.out.print("Ocorrencia registrada");
+				    break;
+				}else if(prioridade.equalsIgnoreCase("Alta")) {
+					
+					System.out.print("\tLink:");
+					String link = scanner.nextLine();
+					
+					System.out.print("\tTamanho:");
+					int tamanho = scanner.nextInt();
+					scanner.nextLine();
+					
+					ocorrencias.newComplexa(titulo,descricao,prioridade,localString,departamento,link,tamanho);
+					break;
+				}
 				
 			case 2:
 				
-				System.out.print("Código a procurar:");
+				/*System.out.print("Código a procurar:");
 				String cod = scanner.nextLine();
 				
 				Ocorrencia encontrada = gestor.procurarOcorrencia(cod);
@@ -70,6 +126,22 @@ public class Main {
 					
 				}else {
 					System.out.print("Ocorrencia não encontrada.");
+				}
+				break;*/
+				
+				System.out.print("Código a procurar:");
+				String cod = scanner.nextLine();
+				Boolean encontrado = false;
+				
+				for (Ocorrencia o : ocorrencias.getOcorrencias()) {
+					if(o.getCodigo().equalsIgnoreCase(cod)) {
+						o.printOcorrencia();
+						encontrado = true;
+						break;
+					}
+				}
+				if(encontrado == false) {
+					System.out.println("A ocorrência com o código " + cod + " não existe!");
 				}
 				break;
 				
@@ -90,8 +162,10 @@ public class Main {
 			}
 		
 			public static void main(String [] args) {
+				
+				Gestor ocorrencias = new Gestor();
 				interfaceSistema();
-				menu();
+				menu(ocorrencias);
 		
 	}
 }
