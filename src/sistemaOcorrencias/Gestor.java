@@ -1,4 +1,3 @@
-
 package sistemaOcorrencias;
 
 /**
@@ -288,5 +287,5 @@ public class Gestor {
 				+ "  |  Abertas: " + abertas.size());
 		System.out.println("==========================================\n");
 	  }
-	}
 
+	}
