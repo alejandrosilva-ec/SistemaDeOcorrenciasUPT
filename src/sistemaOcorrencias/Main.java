@@ -41,6 +41,7 @@ public class Main {
 				System.out.println("1-Sala");
 				System.out.println("2-Cantina");
 				System.out.println("3-Parque de estacionamento");
+				System.out.println("4-Biblioteca");
 				
 				System.out.print("Opção:");
 				int opcaoLocal = scanner.nextInt();
@@ -71,6 +72,13 @@ public class Main {
 				case 3:
 					
 					localizacao = new Local("Parque de estacionamento","");
+					localString = localizacao.toString();
+					
+					break;
+					
+				case 4:
+					
+					localizacao = new Local("Biblioteca", "");
 					localString = localizacao.toString();
 					
 					break;
